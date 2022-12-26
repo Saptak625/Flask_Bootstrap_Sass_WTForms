@@ -1,0 +1,36 @@
+{% extends "template.html" %}
+{% block title %}Home{% endblock title %}
+{% block pageTitle %}Search{% endblock pageTitle %}
+{% block navLink %}search{% endblock navLink %}
+{% block body %}
+{{ super() }}
+<form class="pb-3 needs-validation" role="search" method="POST" action="" novalidate>
+    <div class="input-group mb-3">
+        {% if searchForm.ticker.errors %}
+            {{ searchForm.ticker(class="form-control is-invalid") }}
+                {% for error in searchForm.ticker.errors %}
+                    <span class="invalid-feedback">{{ error }}</span>
+                {% endfor %}
+        {% else %}
+            {{ searchForm.ticker(class="form-control") }}
+        {% endif %}
+        {{ searchForm.submit(class="btn btn-outline-primary") }}
+    </div>
+</form>
+{% endblock body %}
+
+{% block results %}
+{{ super() }}
+{% if data != None %}
+<div id="data">
+{% if noResults %}
+    <h3 class="text-center">No Results</h3>
+    {% else %}
+    <h3>Previous Day Close</h3>
+    <p>{{ data[0] }}</p>
+{% endif %}
+</div>
+{% endif %}
+{% endblock results %}
+
+{% block footerClass %}fixed-bottom{% endblock footerClass %}
