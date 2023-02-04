@@ -6,15 +6,15 @@
 {{ super() }}
 <form class="pb-3 needs-validation" role="search" method="POST" action="" novalidate>
     <div class="input-group mb-3">
-        {% if searchForm.ticker.errors %}
-            {{ searchForm.ticker(class="form-control is-invalid") }}
-                {% for error in searchForm.ticker.errors %}
-                    <span class="invalid-feedback">{{ error }}</span>
-                {% endfor %}
+        {% if inputForm.inputString.errors %}
+        {{ inputForm.inputString(class="form-control is-invalid") }}
+        {% for error in inputForm.inputString.errors %}
+        <span class="invalid-feedback">{{ error }}</span>
+        {% endfor %}
         {% else %}
-            {{ searchForm.ticker(class="form-control") }}
+        {{ inputForm.inputString(class="form-control") }}
         {% endif %}
-        {{ searchForm.submit(class="btn btn-outline-primary") }}
+        {{ inputForm.submit(class="btn btn-outline-primary") }}
     </div>
 </form>
 {% endblock body %}
@@ -23,12 +23,12 @@
 {{ super() }}
 {% if data != None %}
 <div id="data">
-{% if noResults %}
+    {% if noResults %}
     <h3 class="text-center">No Results</h3>
     {% else %}
-    <h3>Previous Day Close</h3>
-    <p>{{ data[0] }}</p>
-{% endif %}
+    <h3>Input</h3>
+    <p>{{ data }}</p>
+    {% endif %}
 </div>
 {% endif %}
 {% endblock results %}

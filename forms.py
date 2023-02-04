@@ -1,8 +1,8 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, BooleanField, IntegerField, SubmitField
-from wtforms.validators import DataRequired, Length
+from wtforms import StringField, SubmitField
+from wtforms.validators import DataRequired
 
-class TickerForm(FlaskForm):
-  ticker = StringField('Ticker: ',
-                      validators=[DataRequired()], render_kw={"placeholder": "Ticker"})
+class InputForm(FlaskForm):
+  inputString = StringField('Input: ',
+                      validators=[DataRequired()], render_kw={"placeholder": "This is a placeholder."})
   submit = SubmitField('🔎')

@@ -2,7 +2,6 @@ from flask_assets import Bundle
 
 bundles = {
     'home_js': Bundle(
-        # '../node_modules/bootstap/dist/js/bootstrap.min.js',
         'js/main.js',
         filters='jsmin',
         output='gen/packed.%(version)s.js'),
