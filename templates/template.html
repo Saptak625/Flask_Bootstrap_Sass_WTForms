@@ -44,19 +44,19 @@
   {% block wholebody %}
   <div class="container my-3">
     {% block body %}
+    {% with messages = get_flashed_messages(with_categories = True) %}
+      {% if messages %}
+        {% for category, message in messages %}
+          {% if category == "success" %}
+            <div class="alert alert-primary" role="alert">{{ message }}</div>
+          {% elif category == "error" %}
+            <div class="alert alert-danger" role="alert">{{ message }}</div>
+          {% endif %}
+        {% endfor %}
+      {% endif %}
+    {% endwith %}
     <h1>{% block pageTitle %}{% endblock pageTitle %}</h1>
     <hr>
-    {% with messages = get_flashed_messages(with_categories = True) %}
-    {% if messages %}
-    {% for category, message in messages %}
-    {% if category == "success" %}
-    <div class="alert alert-primary" role="alert">{{ message }}</div>
-    {% elif category == "error" %}
-    <div class="alert alert-danger" role="alert">{{ message }}</div>
-    {% endif %}
-    {% endfor %}
-    {% endif %}
-    {% endwith %}
     {% endblock body %}
     {% block results %}
     <div class="mt-3">
